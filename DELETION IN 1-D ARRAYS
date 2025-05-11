@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+void deleteElement(int arr[], int *size, int element) {
+    int i;
+    for (i = 0; i < *size; i++) {
+        if (arr[i] == element) {
+            break;
+        }
+    }
+    
+    if (i == *size) {
+        printf("Element not found.\n");
+        return;
+    }
+
+    for (int j = i; j < *size - 1; j++) {
+        arr[j] = arr[j + 1];
+    }
+    (*size)--;
+    printf("Element deleted successfully.\n");
+}
+
+void displayArray(int arr[], int size) {
+    if (size == 0) {
+        printf("Array is empty.\n");
+        return;
+    }
+    
+    printf("Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[10] = {1, 2, 3, 4, 5, 6, 7};
+    int size = 7;
+    int elementToDelete;
+
+    displayArray(arr, size);
+
+    printf("Enter element to delete: ");
+    scanf("%d", &elementToDelete);
+
+    deleteElement(arr, &size, elementToDelete);
+
+    displayArray(arr, size);
+
+    return 0;
+}
