@@ -1,0 +1,36 @@
+#include <stdio.h>
+#define SIZE 100
+
+int queue[SIZE];
+int front = -1, rear = -1;
+
+void enqueue(int value) {
+    if (rear == SIZE - 1) {
+        printf("Queue is full! Cannot insert %d\n", value);
+    } else {
+        if (front == -1) front = 0;  // First element being inserted
+        rear++;
+        queue[rear] = value;
+        printf("Inserted %d into the queue.\n", value);
+    }
+}
+
+void display() {
+    if (front == -1 || front > rear) {
+        printf("Queue is empty.\n");
+    } else {
+        printf("Queue contents: ");
+        for (int i = front; i <= rear; i++) {
+            printf("%d ", queue[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    display();
+    return 0;
+}
